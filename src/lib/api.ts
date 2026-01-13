@@ -58,12 +58,17 @@ export interface User {
   email: string;
 }
 
+export interface GroupMember {
+  user_id: number;
+  user_name: string;
+}
+
 export interface Group {
   id: number;
   name: string;
   description?: string;
-  members?: User[]; // Optional since backend might not return this
-  created_at?: string; // Optional since backend might not return this
+  members?: GroupMember[];
+  created_at?: string;
 }
 
 export interface Expense {

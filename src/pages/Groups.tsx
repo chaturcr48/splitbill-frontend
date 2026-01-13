@@ -55,7 +55,7 @@ export const Groups: React.FC = () => {
   const handleSendInvite = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedGroupForInvite || !inviteEmail) return;
-    
+
     setInviteLoading(true);
     try {
       await groupsAPI.sendInvitation(selectedGroupForInvite, inviteEmail);
@@ -97,7 +97,6 @@ export const Groups: React.FC = () => {
         </Button>
       </div>
 
-      {/* Search Bar */}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
         <Input
@@ -108,7 +107,6 @@ export const Groups: React.FC = () => {
         />
       </div>
 
-      {/* Groups Grid */}
       {filteredGroups.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
@@ -141,8 +139,8 @@ export const Groups: React.FC = () => {
                     <p className="text-sm text-gray-600">{group.description}</p>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="sm"
                       onClick={() => {
                         setSelectedGroupForInvite(group.id);
@@ -178,11 +176,11 @@ export const Groups: React.FC = () => {
                   <div className="flex -space-x-2">
                     {group.members?.slice(0, 4).map((member) => (
                       <div
-                        key={member.id}
+                        key={member.user_id}
                         className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-xs font-medium border-2 border-white"
-                        title={member.name}
+                        title={member.user_name}
                       >
-                        {member.name.charAt(0).toUpperCase()}
+                        {member.user_name.charAt(0).toUpperCase()}
                       </div>
                     )) || <div className="text-xs text-gray-500">No members</div>}
                     {(group.members?.length || 0) > 4 && (
